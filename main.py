@@ -5,7 +5,7 @@ import os.path
 
 
 def run(playwright: Playwright, current_ip) -> None:
-    browser = playwright.chromium.launch(headless=False)
+    browser = playwright.chromium.launch(headless=True)
     context = browser.new_context()
     page = context.new_page()
     page.goto("https://www.customercontrolpanel.de/")
