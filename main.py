@@ -24,6 +24,7 @@ def run(playwright: Playwright, current_ip) -> None:
     page.get_by_role("button", name="DNS Records speichern").click()
     page.wait_for_load_state("load")
     page.get_by_role("button", name="ok").click()
+    print("IP successfully changed.")
 
     # time.sleep(100) <- for debugging
     page.wait_for_load_state("load")
@@ -55,10 +56,12 @@ def compare_ip() -> None:
         if old_ip != current_ip:
             # Update file
             write_to_file(current_ip)
-
+            print("Mismatching ips! Changing now...")
             # Update entries in ccp
             with sync_playwright() as playwright:
                 run(playwright, current_ip)
+        else:
+            print("Your ip is already up to date! No changes required.")
     else:
         write_to_file(current_ip)
         with sync_playwright() as playwright:
