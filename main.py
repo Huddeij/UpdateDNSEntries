@@ -21,6 +21,7 @@ def run(playwright: Playwright, current_ip) -> None:
     page.wait_for_load_state("load")
     page.locator("input[name=\"record\\[64022085\\]\\[destination\\]\"]").fill(current_ip)
     page.locator("input[name=\"record\\[43525548\\]\\[destination\\]\"]").fill(current_ip)
+    page.locator("input[name=\"record\\[78404034\\]\\[destination\\]\"]").fill(current_ip)
     page.get_by_role("button", name="DNS Records speichern").click()
     page.wait_for_load_state("load")
     page.get_by_role("button", name="ok").click()
